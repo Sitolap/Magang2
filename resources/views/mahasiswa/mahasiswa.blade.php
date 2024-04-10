@@ -138,7 +138,7 @@
                 <input type='checkbox' name='anggota_kelompok[]' value='Cindy'> Cindy<br />
             </div> --}}
 
-            <button type="submit" class="btn btn-primary px-4 py-2 text-center mb-3">Daftar</button>
+            <button onclick="alert('Data Terkirim, Silahkan Mengisi Dokumen Untuk Melanjutkan Pendaftaran')" type="submit" class="btn btn-primary px-4 py-2 text-center mb-3">Daftar</button>
         </form>
     </div>
 
