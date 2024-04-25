@@ -115,28 +115,39 @@
                 </div>
             </div>
 
-            <div class="mb-3">
-                <label for="anggota_kelompok" class="form-label">Anggota Kelompok</label>
-                <input type="text" name="anggota_kelompok" id="anggota_kelompok" class="form-control" required>
+            <div class="form-group">
+                <label for="pilihan">Pilih jumlah form input:</label>
+                <select name="pilihan" id="pilihan" class="form-control">
+                    @for($i = 1; $i <= 6; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
             </div>
-            <!-- Checkbox untuk anggota kelompok -->
-            <!-- Ganti dengan field yang sesuai dengan kebutuhan Anda -->
 
-            <!--
-             // Example:
-             //
-             // 1. Andi
-             // 2. Budi
-             // 3. Cindy
-             -->
+            <div id="form-inputs">
+                <!-- Form input akan ditambahkan di sini -->
+            </div>
+            {{-- <div class="form-group">
+                <label for="pilihan">Pilih Jumlah Anggota Kelompok:</label>
+                <select name="pilihan" id="pilihan" class="form-control">
+                    @for($i = 0; $i <= 6; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+            </div>
 
-            <!-- Anggota Kelompok -->
-            {{-- <div>
-                <label for="anggota_kelompok">Anggota Kelompok:</label><br />
-                <input type='checkbox' name='anggota_kelompok[]' value='Andi'> Andi<br />
-                <input type='checkbox' name='anggota_kelompok[]' value='Budi'> Budi<br />
-                <input type='checkbox' name='anggota_kelompok[]' value='Cindy'> Cindy<br />
+            @for($i = 1; $i <= 6; $i++)
+                <div class="form-group">
+                    <label for="input{{ $i }}">Anggota {{ $i }}:</label>
+                    <input type="text" name="anggota_kelompok{{ $i }}" id="input{{ $i }}" class="form-control">
+                </div>
+            @endfor --}}
+
+            {{-- <div class="mb-3">
+                <label for="anggota_kelompok" class="form-label">Anggota Kelompok</label>
+                <input type="text" name="anggota_kelompok" id="anggota_kelompok" class="form-control">
             </div> --}}
+
 
             <button onclick="alert('Data Terkirim, Silahkan Mengisi Dokumen Untuk Melanjutkan Pendaftaran')" type="submit" class="btn btn-primary px-4 py-2 text-center mb-3">Daftar</button>
         </form>
@@ -145,6 +156,23 @@
     @include('layouts.footer')
 
 
+    <script>
+        document.getElementById('pilihan').addEventListener('change', function() {
+            var pilihan = this.value;
+            var formInputs = document.getElementById('form-inputs');
+            formInputs.innerHTML = ''; 
+
+            for (var i = 1; i <= pilihan; i++) {
+                var div = document.createElement('div');
+                div.classList.add('mb-3');
+                div.innerHTML = `
+                    <label for="input${i}" class="form-label">Input ${i}:</label>
+                    <input type="text" name="input${i}" id="input${i}" class="form-control">
+                `;
+                formInputs.appendChild(div);
+            }
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

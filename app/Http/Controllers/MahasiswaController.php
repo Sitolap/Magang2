@@ -30,7 +30,6 @@ class MahasiswaController extends Controller
             'no_telepon' => 'required',
             'magang_dimulai' => 'required|date',
             'magang_berakhir' => 'required|date',
-            'anggota_kelompok' => 'required',
         ]);
 
         $data = $request->all();
