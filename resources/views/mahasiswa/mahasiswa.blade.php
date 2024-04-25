@@ -116,8 +116,8 @@
             </div>
 
             <div class="form-group">
-                <label for="pilihan">Pilih jumlah form input:</label>
-                <select name="pilihan" id="pilihan" class="form-control">
+                <label for="pilihan">Pilih Jumlah Anggota Kelompok:</label>
+                <select name="anggota_kelompok" id="anggota_kelompok" class="form-control">
                     @for($i = 1; $i <= 6; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
@@ -127,26 +127,7 @@
             <div id="form-inputs">
                 <!-- Form input akan ditambahkan di sini -->
             </div>
-            {{-- <div class="form-group">
-                <label for="pilihan">Pilih Jumlah Anggota Kelompok:</label>
-                <select name="pilihan" id="pilihan" class="form-control">
-                    @for($i = 0; $i <= 6; $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-            </div>
 
-            @for($i = 1; $i <= 6; $i++)
-                <div class="form-group">
-                    <label for="input{{ $i }}">Anggota {{ $i }}:</label>
-                    <input type="text" name="anggota_kelompok{{ $i }}" id="input{{ $i }}" class="form-control">
-                </div>
-            @endfor --}}
-
-            {{-- <div class="mb-3">
-                <label for="anggota_kelompok" class="form-label">Anggota Kelompok</label>
-                <input type="text" name="anggota_kelompok" id="anggota_kelompok" class="form-control">
-            </div> --}}
 
 
             <button onclick="alert('Data Terkirim, Silahkan Mengisi Dokumen Untuk Melanjutkan Pendaftaran')" type="submit" class="btn btn-primary px-4 py-2 text-center mb-3">Daftar</button>
@@ -157,16 +138,16 @@
 
 
     <script>
-        document.getElementById('pilihan').addEventListener('change', function() {
+        document.getElementById('anggota_kelompok').addEventListener('change', function() {
             var pilihan = this.value;
             var formInputs = document.getElementById('form-inputs');
-            formInputs.innerHTML = ''; 
+            formInputs.innerHTML = '';
 
             for (var i = 1; i <= pilihan; i++) {
                 var div = document.createElement('div');
                 div.classList.add('mb-3');
                 div.innerHTML = `
-                    <label for="input${i}" class="form-label">Input ${i}:</label>
+                    <label for="input${i}" class="form-label">Anggota ${i}:</label>
                     <input type="text" name="input${i}" id="input${i}" class="form-control">
                 `;
                 formInputs.appendChild(div);
