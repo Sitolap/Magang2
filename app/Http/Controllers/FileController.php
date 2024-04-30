@@ -10,7 +10,7 @@ class FileController extends Controller
 {
     public function create()
     {
-        return view('mahasiswa.dokumen');
+        return view('user.dokumen');
     }
 
     public function store(Request $request)

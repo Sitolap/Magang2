@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use App\Models\Regency;
-use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class MahasiswaController extends Controller
+class SiswaController extends Controller
+
 {
     function index()
     {
         $regencies = Regency::orderBy('name')->get();
-        return view('mahasiswa.mahasiswa', compact('regencies'));
+        return view('siswa.siswa', compact('regencies'));
     }
 
     function store(Request $request)
@@ -20,29 +21,28 @@ class MahasiswaController extends Controller
         $request->validate([
             'nama' => 'required|min:5',
             'jenjang_pendidikan' => 'required',
-            'kota_universitas' => 'required',
-            'nama_universitas' => 'required',
-            'fakultas' => 'required',
-            'program_studi' => 'required',
-            'nomor_induk_mahasiswa' => 'required',
+            'kota_sekolah' => 'required',
+            'nama_sekolah' => 'required',
+            'jurusan' => 'required',
             'jenis_kelamin' => 'required',
             'email' => 'required',
             'no_telepon' => 'required',
             'magang_dimulai' => 'required|date',
             'magang_berakhir' => 'required|date',
+            'anggota_kelompok'  => 'required',
         ]);
 
         $data = $request->all();
         $data['user_id'] = Auth::id(); // Mendapatkan user_id pengguna yang saat ini diautentikasi
 
-        Mahasiswa::create($data);
-        
+        Siswa::create($data);
+
 
         return redirect()->route('berhasil');
     }
 
     function dokumen()
     {
-        return view('mahasiswa.dokumen');
+        return view('siswa.dokumen');
     }
 }
