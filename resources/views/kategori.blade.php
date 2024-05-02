@@ -26,7 +26,7 @@
                 <div class="card custom-card mx-auto btn-outline-primary" style="">
                     <div class="card-body text-center">
                         <h5 class="card-title">Jenjang Pendidikan</h5>
-                        <a href="/pendaftaran/mahasiswa" class="btn btn-primary my-sm-4 py-sm-3 px-sm-5">Perguruan
+                        <a href="/pendaftaran-mahasiswa" class="btn btn-primary my-sm-4 py-sm-3 px-sm-5">Perguruan
                             Tinggi</a>
                         <p><b>atau</b></p>
                         <a href="/pendaftaran/siswa"class="btn btn-primary my-sm-4 py-sm-3 px-sm-5">Sekolah</a>
