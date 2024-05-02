@@ -17,9 +17,9 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function ()
 {
     Route::get('/', [HomeController::class, 'index']);
-    Route::get('/kategori-magang', [MagangController::class, 'index']);
+    Route::get('/kategori-magang', [MagangController::class, 'index'])->name('kategori-magang');;
     // Mahasiswa
-    Route::get('/pendaftaran/mahasiswa', [MahasiswaController::class, 'index']);
+    Route::get('/pendaftaran-mahasiswa', [MahasiswaController::class, 'index'])->name('pendaftaran.mahasiswa');
     Route::get('/dokumen/mahasiswa', [MahasiswaController::class, 'dokumen']);
     Route::post('/pendaftaran/mahasiswa', [MahasiswaController::class, 'store']);
     // Siswa
