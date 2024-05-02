@@ -9,18 +9,18 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mx-auto ">
                 <li class="nav-item">
-                    <a class="nav-link active   mx-sm-5 text-white"
-                        aria-current="page" href="/kategori-magang">
+                    <a class="nav-link mx-sm-5 text-white {{ (Route::is('kategori-magang')) ? 'text-white bg-primary rounded' : '' }}"
+                        href="{{ route('kategori-magang') }}">
                         <span>Kategori Magang</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active mx-sm-5 text-white" aria-current="page" href="/pendaftaran mahasiswa">
+                    <a class="nav-link mx-sm-5 text-white {{ (Route::is('pendaftaran.mahasiswa')) ? 'text-white bg-primary rounded' : '' }}" aria-current="page" href="{{ route('pendaftaran.mahasiswa') }}">
                         <span>Formulir Data Diri</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-sm-5 text-white" href="#kategori-magang">
+                    <a class="nav-link mx-sm-5 text-white {{ (Route::is('files.create')) ? 'text-white bg-primary rounded' : '' }}" href="{{ route('files.create') }}">
                         <span>Unggah Dokumen</span>
                     </a>
                 </li>
