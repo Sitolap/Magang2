@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MagangController;
 use App\Http\Controllers\WilayahController;
@@ -15,6 +16,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function ()
 {
+    Route::get('/', [HomeController::class, 'index']);
     Route::get('/kategori-magang', [MagangController::class, 'index']);
     // Mahasiswa
     Route::get('/pendaftaran/mahasiswa', [MahasiswaController::class, 'index']);
