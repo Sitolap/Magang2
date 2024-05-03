@@ -140,7 +140,7 @@
         <br>
         <div class="row">
             <div class="col-12 text-center text-md-center text-sm-center">
-                <a href="/kategori-magang" class="button btn btn-primary text-center my-sm-4 py-sm-3 px-sm-5"
+                <a href="/kategori-magang" class="button btn btn-primary text-center my-sm-4 py-sm-3 px-sm-5" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'"
                     style="background-color:rgba(0, 81, 157, 0.9151784182); ">
                     <h4>Daftar Sekarang</h4>
                 </a>
