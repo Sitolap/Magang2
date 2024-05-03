@@ -9,18 +9,18 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mx-auto ">
                 <li class="nav-item">
-                    <a class="nav-link mx-sm-5 text-white {{ (Route::is('kategori-magang')) ? 'text-white bg-primary rounded' : '' }}"
-                        href="{{ route('kategori-magang') }}">
+                    <a class="nav-link mx-sm-5 text-white rounded {{ (Route::is('kategori-magang')) ? 'text-white bg-primary rounded' : '' }}"
+                        href="{{ route('kategori-magang') }}" onmouseover="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'" onmouseout="this.style.backgroundColor='rgb(190, 190, 195)'">
                         <span>Kategori Magang</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-sm-5 text-white {{ (Route::is('pendaftaran.mahasiswa')) ? 'text-white bg-primary rounded' : '' }}" aria-current="page" href="{{ route('pendaftaran.mahasiswa') }}">
+                    <a class="nav-link mx-sm-5 text-white rounded {{ (Route::is('pendaftaran.mahasiswa')) ? 'text-white bg-primary rounded' : '' }}" aria-current="page" href="{{ route('pendaftaran.mahasiswa') }}" onmouseover="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'" onmouseout="this.style.backgroundColor='rgb(190, 190, 195)'">
                         <span>Formulir Data Diri</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-sm-5 text-white {{ (Route::is('files.create')) ? 'text-white bg-primary rounded' : '' }}" href="{{ route('files.create') }}">
+                    <a class="nav-link mx-sm-5 text-white rounded {{ (Route::is('files.create')) ? 'text-white bg-primary rounded' : '' }}" href="{{ route('files.create') }}" onmouseover="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'" onmouseout="this.style.backgroundColor='rgb(190, 190, 195)'">
                         <span>Unggah Dokumen</span>
                     </a>
                 </li>
