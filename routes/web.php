@@ -36,3 +36,27 @@ Route::middleware(['auth'])->group(function ()
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/dashboard-admin', function () {
+    return view('admin/dashboard-admin')->name('admin');
+});
+
+Route::get('/pengajuan-magang', function () {
+    return view('admin/pengajuan-magang');
+});
+
+Route::get('/daftar-pemagang', function () {
+    return view('admin/daftar-pemagang');
+});
+
+Route::get('/detail-pendaftar', function () {
+    return view('admin/detail-pendaftar');
+});
+
+Route::get('/detail', function () {
+    return view('admin/detail')->name('detail');
+});
+
+Route::get('/detail-terima', function () {
+    return view('admin/detail-terima')->name('detail.terima');
+});
