@@ -91,8 +91,7 @@
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                         id="menu">
                         <li class="nav-item">
-                            <a class="nav-link px-0 align-middle rounded {{ (Route::is('admin')) ? 'text-white bg-primary rounded' : '' }}"
-                            href="{{ route('admin') }}" onmouseover="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'" onmouseout="this.style.backgroundColor='rgb(190, 190, 195)'">
+                            <a href="/dashboard-admin" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-speedometer2"></i> <span
                                     class="ms-1 d-none d-sm-inline text-white">Dashboard</span>
                             </a>
@@ -152,12 +151,10 @@
                                 <div class="card-body text-center">
                                     <h1 class="card-title">0</h1>
 
-
-  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-  12  
-  <span class="visually-hidden"> Jakarta </span>
-  </span>
-
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                    12  
+                                         <span class="visually-hidden"> Jakarta </span>
+                                     </span>
                                     <h5>Jakarta</h5>
 
                                 </div>
@@ -167,6 +164,10 @@
                             <div class="card custom-card mx-auto btn-outline-primary">
                                 <div class="card-body text-center">
                                     <h1 class="card-title">0</h1>
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        12  
+                                        <span class="visually-hidden"> Jakarta </span>
+                                        </span>
                                     <h5>Tangerang</h5>
                                 </div>
                             </div>
@@ -175,6 +176,10 @@
                             <div class="card custom-card mx-auto btn-outline-primary">
                                 <div class="card-body text-center">
                                     <h1 class="card-title">0</h1>
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        12  
+                                        <span class="visually-hidden"> Jakarta </span>
+                                        </span>
                                     <h5>Bogor</h5>
                                 </div>
                             </div>
@@ -189,6 +194,10 @@
                             <div class="card custom-card mx-auto btn-outline-primary">
                                 <div class="card-body text-center">
                                     <h1 class="card-title">0</h1>
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        12  
+                                        <span class="visually-hidden"> Jakarta </span>
+                                        </span>
                                     <h5>Bekasi</h5>
 
                                 </div>
@@ -198,6 +207,10 @@
                             <div class="card custom-card mx-auto btn-outline-primary">
                                 <div class="card-body text-center">
                                     <h1 class="card-title">0</h1>
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        12  
+                                        <span class="visually-hidden"> Jakarta </span>
+                                        </span>
                                     <h5>Depok</h5>
                                 </div>
                             </div>
@@ -206,6 +219,10 @@
                             <div class="card custom-card mx-auto btn-outline-primary">
                                 <div class="card-body text-center">
                                     <h1 class="card-title">0</h1>
+                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                        12  
+                                        <span class="visually-hidden"> Jakarta </span>
+                                        </span>
                                     <h5>Tangerang Selatan</h5>
                                 </div>
                             </div>

@@ -122,12 +122,16 @@
             grid-template-rows: repeat(0, 1fr); /* Membuat 4 baris dengan tinggi yang sama */
             gap: 0px; /* Jarak antar elemen */
         }
-
+        .container1 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Membuat 3 kolom dengan lebar yang sama */
+            gap: 70px; /* Jarak antar elemen */
+        }
         .rectangle {
-            background-color: #00519de9;
+            background-color: #8fbbe4;
             color: black;
             text-align: left;
-            line-height: 40px; /* Tinggi setiap kolom */
+            line-height: 20px; /* Tinggi setiap kolom */
             border-radius: 10px; 
             border: 1px solid black;
         }
@@ -135,35 +139,61 @@
             background-color: white;
             color: black;
             text-align: left;
-            line-height: 40px; /* Tinggi setiap kolom */
+            line-height: 15px; /* Tinggi setiap kolom */
             border-radius: 10px; 
             border: 1px solid black;
+        }
+        .rectangle2 {
+            background-color: #3e98ec;
+            color: black;
+            text-align: left;
+            line-height: 15px; /* Tinggi setiap kolom */
+            border-radius: 10px; 
+            border: 1px solid black;
+        }
+        .rectangle3 {
+            background-color: #9ca6b1;
+            color: black;
+            text-align: center;
+            line-height: 10px; /* Tinggi setiap kolom */
+            border-radius: 10px; 
+            border: 1px solid black;  
+        }
+        .rectangle3:hover {
+            background-color: #236cca;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="rectangle">
+        <div class="rectangle2">
         <b>
-        <h5> Nama Pemagang </h5>
-        <h5> Perguruan Tinggi/Univesitas <h5>
+            <h5><p class="mt-2 ms-2">Nama Pendaftar 1</p> </h5>
+            <h5><p class="mt-2 ms-2">Perguruan Tinggi/Universitas</p><h5>
     </b>
         </div>
         <br>
-        <div class="rectangle">Nama: </div>
-        <div class="rectangle1">Jenjang Pendidikan:</div>
-        <div class="rectangle">Perguruan Tinggi/Universitas</div>
-        <div class="rectangle1">Fakultas</div>
-        <div class="rectangle">Program Studi</div>
-        <div class="rectangle1">Periode Magang</div>
-        <div class="rectangle">Penempatan</div>
-        <div class="rectangle1">Penugasan</div>
+        <div class="rectangle"><p class="mt-2 ms-2">Nama</p> </div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Jenjang Pendidikan</p></div>
+        <div class="rectangle"><p class="mt-2 ms-2">Perguruan Tinggi/Universitas</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Fakultas</p></div>
+        <div class="rectangle"><p class="mt-2 ms-2">Program Studi</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Periode Magang</p></div>
+        <div class="rectangle"><p class="mt-2 ms-2 me-2">
+            <label for="penempatan" class="form-label">Penempatan :</label>
+            <input type="text" name="penempatan" id="penempatan" class="form-control" required>   
+        </p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2 me-2">
+            <label for="penugasan" class="form-label">Penugasan :</label>
+            <input type="text" name="penugasan" id="penugasan" class="form-control" required>  
+        </p></div>
         <br>
         <br>
-        <div class="rectangle">
+        <div class="rectangle2">
         <b>
-        <h5>Dokumen<h5>
-    </b>
+        <h5><p class="mt-2 ms-2">Dokumen</p><h5>
+          </b>
         </div>
         <br>
         <form action="{{ route('files.store') }}" method="POST" enctype="multipart/form-data">
@@ -186,10 +216,21 @@
                 <input class="form-control" type="file" id="surat_keterangan" name="surat_keterangan">
             </div>
 
-            <button onclick="alert('Dokumen Terkirim')" type="submit" class="btn btn-primary">Submit</button>
         </form>
-<br>
-<br>
-</html>
 
+    </div>
+<br>
+<br>
+<div class="container1"> 
+    <button class="rectangle3 ms-5 me-5" onclick="alert('Dokumen Terkirim')" type="submit" class="btn btn-primary"><p class="mt-2 ms-2"><b> Simpan </b></p></button>
+    <button class="rectangle3 ms-5 me-5" onclick="alert('Selesi Magang')" type="submit" class="btn btn-primary"><p class="mt-2 ms-2"><b>Selesai Magang</b></p></button>
+</div>
+<script>
+    function changeColor(button) {
+        button.style.backgroundColor = "#007bff";
+        button.style.color = "white";
+    }
+</script>
+<br>
+<br>
 </body>

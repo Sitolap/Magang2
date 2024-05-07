@@ -124,15 +124,14 @@
         }
         .container1 {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Membuat 3 kolom dengan lebar yang sama */
-            gap: 10px; /* Jarak antar elemen */
-            justify-content: center;
+            grid-template-columns: repeat(2, 1fr); /* Membuat 3 kolom dengan lebar yang sama */
+            gap: 70px; /* Jarak antar elemen */
         }
         .rectangle {
-            background-color: #379bf8;
+            background-color: #8fbbe4;
             color: black;
             text-align: left;
-            line-height: 40px; /* Tinggi setiap kolom */
+            line-height: 20px; /* Tinggi setiap kolom */
             border-radius: 10px; 
             border: 1px solid black;
         }
@@ -140,53 +139,88 @@
             background-color: white;
             color: black;
             text-align: left;
-            line-height: 40px; /* Tinggi setiap kolom */
+            line-height: 15px; /* Tinggi setiap kolom */
             border-radius: 10px; 
             border: 1px solid black;
+        }
+        .rectangle2 {
+            background-color: #3e98ec;
+            color: black;
+            text-align: left;
+            line-height: 15px; /* Tinggi setiap kolom */
+            border-radius: 10px; 
+            border: 1px solid black;
+        }
+        .rectangle3 {
+            background-color: #9ca6b1;
+            color: black;
+            text-align: center;
+            line-height: 10px; /* Tinggi setiap kolom */
+            border-radius: 10px; 
+            border: 1px solid black; 
+            transition: background-color 0.3s; 
+        }
+        .rectangle3:hover {
+            background-color: #6d7379;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="rectangle">
+        <div class="rectangle2">
         <b>
-        <h5> Nama Pendaftar 1 </h5>
-        <h5> Perguruan Tinggi/Univesitas <h5>
+        
+        <h5><p class="mt-2 ms-2">Nama Pendaftar 1</p> </h5>
+        <h5><p class="mt-2 ms-2">Perguruan Tinggi/Universitas</p><h5>
     </b>
         </div>
         <br>
-        <div class="rectangle"><p class="mt-2 ms-2">Nama:</p> </div>
-        <div class="rectangle1">Jenjang Pendidikan:</div>
-        <div class="rectangle">Perguruan Tinggi/Universitas</div>
-        <div class="rectangle1">Fakultas</div>
-        <div class="rectangle">Program Studi</div>
-        <div class="rectangle1">Email</div>
-        <div class="rectangle">No. Telepon</div>
-        <div class="rectangle1">Periode Magang</div>
-        <div class="rectangle">Jumlah Anggota Kelompok</div>
-        <div class="rectangle1">Nama Anggota Kelompok</div>
+        <div class="rectangle"><p class="mt-2 ms-2">Nama</p> </div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Jenjang Pendidikan</p></div>
+        <div class="rectangle"><p class="mt-2 ms-2">Perguruan Tinggi/Universitas</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Fakultas</p></div>
+        <div class="rectangle"><p class="mt-2 ms-2">Program Studi</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Email</p></div>
+        <div class="rectangle"><p class="mt-2 ms-2">No. Telepon</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Periode Magang</p></div>
+        <div class="rectangle"><p class="mt-2 ms-2">Jumlah Anggota Kelompok</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Nama Anggota Kelompok</p></div>
         <br>
         <br>
-        <div class="rectangle">
+        <div class="rectangle2">
         <b>
-        <h5>Dokumen<h5>
-    </b>
+        <h5><p class="mt-2 ms-2">Dokumen</p><h5>
+          </b>
         </div>
         <br>
-        <div class="rectangle1">Pas Foto</div>
-        <div class="rectangle1">Surat Pengantar</div>
-        <div class="rectangle1">Transkrip Nilai</div>
-        <div class="rectangle1">CV</div>
-        <div class="rectangle1">Portofolio</div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Pas Foto</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Surat Pengantar</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Transkrip Nilai</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">CV</p></div>
+        <div class="rectangle1"><p class="mt-2 ms-2">Portofolio</p></div>
 
     </div>
 <br>
 <br>
     <div class="container1"> 
-        <div class="rectangle">Di Terima</div>
-        <div class="rectangle">Di Tolak</div>
+            <button class="rectangle3 ms-5 me-5" onclick="changeColor(this)" type="submit" class="btn btn-primary" id="diTerimaBtn"><p class="mt-2 ms-2"><b> Di Terima </b></p></button>
+            <button class="rectangle3 ms-5 me-5" onclick="changeColor(this)" type="submit" class="btn btn-primary" id="diTolakBtn"><p class="mt-2 ms-2"><b>Di Tolak</b></p></button>
     </div>
 
+    <script>
+        function changeColor(button) {
+            if (button.id === "diTerimaBtn") {
+                button.style.backgroundColor = "#007bff"; // Biru jika Di Terima
+                document.getElementById("diTolakBtn").disabled = true; // Menonaktifkan tombol Di Tolak
+            } else if (button.id === "diTolakBtn") {
+                button.style.backgroundColor = "#dc3545"; // Merah jika Di Tolak
+                document.getElementById("diTerimaBtn").disabled = true; // Menonaktifkan tombol Di Terima
+            }
+            button.style.color = "white";
+            button.disabled = true; // Menonaktifkan tombol yang diklik
+        }
+    </script>
 <br>
 <br>
 </html>
