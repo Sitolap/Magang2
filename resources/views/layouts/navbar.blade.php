@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-sm-5 text-white" href="#persyaratan-dokumen">
+                    <a class="nav-link mx-sm-5 text-white rounded {{ (Route::is('status')) ? 'text-white bg-primary rounded' : '' }}" href="/status/{id}/pengajuan" onmouseover="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'" onmouseout="this.style.backgroundColor='rgb(190, 190, 195)'">
                         <span>Status Pengajuan</span>
                     </a>
                 </li>

@@ -46,4 +46,11 @@ class FileController extends Controller
 
         return redirect()->route('dokumen_kirim');
     }
+
+    public function file($id)
+    {
+        $files=File::find(1);
+        return view('admin.detail', compact('files'));
+    }
+
 }

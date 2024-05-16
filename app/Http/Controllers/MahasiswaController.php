@@ -30,13 +30,17 @@ class MahasiswaController extends Controller
             'no_telepon' => 'required',
             'magang_dimulai' => 'required|date',
             'magang_berakhir' => 'required|date',
+            'anggota_kelompok' => 'required'
         ]);
 
         $data = $request->all();
         $data['user_id'] = Auth::id(); // Mendapatkan user_id pengguna yang saat ini diautentikasi
 
-        Mahasiswa::create($data);
+        // Proses data anggota kelompok sebelum disimpan ke database
+        // Proses data anggota kelompok sebelum disimpan ke database
         
+        Mahasiswa::create($data);
+
 
         return redirect()->route('berhasil');
     }

@@ -78,27 +78,7 @@
                     </a>
                     <br>
 
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                        id="menu">
-                        <li class="nav-item">
-                            <a href="/dashboard-admin" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-speedometer2"></i> <span
-                                    class="ms-1 d-none d-sm-inline text-white">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/pengajuan-magang" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-speedometer2"></i> <span
-                                    class="ms-1 d-none d-sm-inline text-white">Pengajuan Magang</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/daftar-pemagang" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-speedometer2"></i> <span
-                                    class="ms-1 d-none d-sm-inline text-white">Daftar Pemagang</span>
-                            </a>
-                        </li>
-                    </ul>
+                   @include('layouts.navbarAdmin')
 
                     <hr>
                 </div>

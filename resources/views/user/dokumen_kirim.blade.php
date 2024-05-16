@@ -24,7 +24,7 @@
     </div>
 
     <div class="row text-center mt-lg-3 mt-sm-1">
-        <p>Silahkan Lengkapi Pengisian <a href=""><b>Status Pengajuan</b></a></p>
+        <p>Silahkan Lengkapi Pengisian <a href="/status/{id}/pengajuan"><b>Status Pengajuan</b></a></p>
     </div>
 
     <footer style="background-color: rgba(0, 81, 157, 0.9151784182);" class="fixed-bottom">

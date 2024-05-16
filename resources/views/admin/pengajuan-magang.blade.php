@@ -78,28 +78,8 @@
                     </a>
 
                     <br>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                        id="menu">
-                        <li class="nav-item">
-                            <a href="/dashboard-admin" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-speedometer2"></i> <span
-                                    class="ms-1 d-none d-sm-inline text-white">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/pengajuan-magang" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-speedometer2"></i> <span
-                                    class="ms-1 d-none d-sm-inline text-white">Pengajuan Magang</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/daftar-pemagang" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-speedometer2"></i> <span
-                                    class="ms-1 d-none d-sm-inline text-white">Daftar Pemagang</span>
-                            </a>
-                        </li>
-                    </ul>
 
+                        @include('layouts.navbarAdmin')
                     <hr>
                 </div>
             </div>
@@ -197,72 +177,41 @@
                             <th>NO</th>
                             <th>Nama</th>
                             <th>Instansi</th>
+                            <th>Anggota Kelompok</th>
                             <th>Tanggal Pengajuan</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>Universitas XXX</td>
-                            <td>01 Jan 2024</td>
-                            <td class="diterima">Diterima</td>
-                            <td>
-                                <a href ="/detail">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>SMK XXX</td>
-                            <td>XX XXX XXXX</td>
-                            <td class="ditolak">Ditolak</td>
-                            <td>
-                                <a href ="/detail">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>XX XXX XXXX</td>
-                            <td class="pending">Pending</td>
-                            <td>
-                                <a href ="/detail">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>XX XXX XXXX</td>
-                            <td class="">-</td>
-                            <td>
-                                <a href ="/detail">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>XX XXX XXXX</td>
-                            <td class="">-</td>
-                            <td>
-                                <a href ="/detail">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($pemagangs as $pemagang)
+                            <tr>
+                                <td>1</td>
+                                <td>{{ $pemagang->nama }}</td>
+                                <td>{{ $pemagang->nama_universitas }}</td>
+                                <td>{{ $pemagang->anggota_kelompok }}</td>
+                                <td>{{ $pemagang->created_at }}</td>
+                                <td>
+                                    @if ($pemagang->status==='pengajuan terkirim')
+                                        <p class="" style="background-color: #FFCD29">
+                                    @elseif ($pemagang->status==='pengajuan dilihat')
+                                        <p class="bg-success">
+                                    @elseif ($pemagang->status==='surat balasan dibuat')
+                                        <p class="bg-success">
+                                    @elseif ($pemagang->status==='surat balasan tersedia')
+                                        <p class="bg-success">
+                                    @endif
+                                    {{ $pemagang->status }}
+                                </td>
+                                <td>
+                                    <a href ="/pemagang/{{ $pemagang->id }}/detail">
+                                    <button class="btn btn-primary">Detail</button>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        @endforeach
+
                     </tbody>
                 </table>
                 <br>
