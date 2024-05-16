@@ -15,7 +15,7 @@
 
     <div class="row justify-content-center mt-sm-4">
         <div class="text-center">
-            <img src="{{ asset('Asset/img/centang.png') }}" alt="" width="200px" height="200px">
+            <img src="{{ asset('Asset/img/pendaftaran terkirim.svg') }}" alt="" width="250px" height="250px">
         </div>
     </div>
 

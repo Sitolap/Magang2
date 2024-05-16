@@ -7,6 +7,15 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .kominfo {
+            position: absolute;
+            width: 1000px;
+            height: 5000px;
+            left: 1050px;
+            top: 124px;
+        }
+    </style>
 </head>
 
 <body>
@@ -79,11 +88,20 @@
 
     <div class="container-fluid" style="background-color: rgba(0, 81, 157, 0.9151784182) ;">
         <div class="row">
-            <div class="col-5 text-white pt-lg-5 mt-lg-4 text-lg-center py-sm-5 my-sm-5 text-sm-center h1">Program
-                Magang</div>
-            <div class="col-7">
-                <img src="Asset/img/rectangle-23824.png" alt="" class="opacity-50 img-fluid"
-                    style="height:100%; width: 100%;">
+            <div class="col-5 text-white pt-lg-5 my-lg-4 h1 ms-3 text-center">Magang Kementerian Komunikasi dan Informatika <br>
+                <a href="/kategori-magang" class="button btn btn-primary text-center my-sm-5 py-sm-3 px-sm-5"
+                    onmouseover="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'"
+                    onmouseout="this.style.backgroundColor='rgb(190, 190, 195)'"
+                    style="background-color:rgb(190, 190, 195); ">
+                    <h5>Daftar Sekarang</h5>
+                </a>
+            </div>
+
+            <div class="col-5 offset-1">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset('Asset/img/kominfo lengkap.svg') }}" alt="" class="img-fluid mt-4 px-6"
+                    style="height:30%; width: 80%;">
+                </div>
             </div>
         </div>
     </div>
@@ -140,7 +158,9 @@
         <br>
         <div class="row">
             <div class="col-12 text-center text-md-center text-sm-center">
-                <a href="/kategori-magang" class="button btn btn-primary text-center my-sm-4 py-sm-3 px-sm-5" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'"
+                <a href="/kategori-magang" class="button btn btn-primary text-center my-sm-4 py-sm-3 px-sm-5"
+                    onmouseover="this.style.backgroundColor='red'"
+                    onmouseout="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'"
                     style="background-color:rgba(0, 81, 157, 0.9151784182); ">
                     <h4>Daftar Sekarang</h4>
                 </a>

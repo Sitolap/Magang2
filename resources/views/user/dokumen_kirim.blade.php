@@ -13,13 +13,13 @@
 <body>
     @include('layouts.navbar')
 
-    <div class="row justify-content-center mt-sm-4">
+    <div class="row justify-content-center mt-sm-5">
         <div class="text-center">
-            <img src="{{ asset('Asset/img/centang.png') }}" alt="" width="200px" height="200px">
+            <img src="{{ asset('Asset/img/dokumen terkirim.svg') }}" alt="" width="200px" height="200px">
         </div>
     </div>
 
-    <div class="row text-center mt-lg-4 mt-sm-3">
+    <div class="row text-center mt-lg-5 mt-sm-3">
         <h2>File Pendaftaran Berhasil Terkirim</h2>
     </div>
 

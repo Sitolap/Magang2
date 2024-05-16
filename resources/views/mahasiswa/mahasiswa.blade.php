@@ -24,7 +24,7 @@
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
-                    {{ $error }}
+                        {{ $error }}
                     @endforeach
                 </ul>
             </div>
@@ -118,7 +118,7 @@
             <div class="form-group">
                 <label for="pilihan">Pilih Jumlah Anggota Kelompok:</label>
                 <select name="anggota_kelompok" id="anggota_kelompok" class="form-control">
-                    @for($i = 1; $i <= 6; $i++)
+                    @for ($i = 1; $i <= 6; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
@@ -130,7 +130,7 @@
 
 
 
-            <button onclick="alert('Data Terkirim, Silahkan Mengisi Dokumen Untuk Melanjutkan Pendaftaran')" type="submit" class="btn btn-primary px-4 py-2 text-center mb-3">Daftar</button>
+            <button type="submit" class="btn btn-primary px-4 py-2 text-center mb-3">Daftar</button>
         </form>
     </div>
 

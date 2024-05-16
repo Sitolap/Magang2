@@ -58,7 +58,7 @@
                 <input class="form-control" type="file" id="pas_foto" name="pas_foto">
             </div>
 
-            <button onclick="alert('Dokumen Terkirim')" type="submit" class="btn btn-primary">Submit</button>
+            <button onclick="alert('Dokumen Terkirim')" type="submit" class="btn btn-primary mb-3">Submit</button>
         </form>
 
     </div>
