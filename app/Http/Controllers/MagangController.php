@@ -12,9 +12,9 @@ class MagangController extends Controller
         return view('kategori');
     }
 
-    public function status($id)
+    public function status(Request $request, $id)
     {
-        $pemagang = Mahasiswa::find(2);
+        $pemagang = Mahasiswa::find(1);
         $progress = 0;
         $status = 'Pengajuan Terkirim';
 
@@ -27,20 +27,36 @@ class MagangController extends Controller
         } elseif ($pemagang->status === 'surat_balasan_tersedia') {
             $progress = 75;
             $status = 'Surat Balasan Tersedia';
-        } elseif ($pemagang->status === 'diterima' || $pemagang->status === 'ditolak') {
+        } elseif ($pemagang->status === 'diterima') {
             $progress = 100;
             $status = 'Pendaftaran Selesai';
+        } elseif ($pemagang->status === 'ditolak') {
+            $progress = 0;
+            $status = 'Pendaftaran Ditolak';
         }
         return view('user.status_pengajuan', compact('pemagang', 'progress', 'status'));
 
     }
 
-    public function updateStatus(Request $request, $id)
-    {
-        $pemagang = Mahasiswa::findOrFail($id);
-        $pemagang->status = $request->status;
-        $pemagang->save();
+    // AdminController.php
 
-        return redirect()->back()->with('success', 'Status pengajuan berhasil diubah.');
-    }
+public function accept($id)
+{
+    $pemagang = Mahasiswa::findOrFail(1);
+    $pemagang->status = 'surat balasan dibuat';
+    $pemagang->save();
+
+    return redirect()->back()->with('success', 'Status pemagang telah diubah menjadi Surat Balasan Dibuat.');
+}
+
+public function reject($id)
+{
+    $pemagang = Mahasiswa::findOrFail(1);
+    $pemagang->status = 'ditolak';
+    $pemagang->save();
+
+    return redirect()->back()->with('success', 'Status pemagang telah diubah menjadi Pengajuan Magang Anda Ditolak.');
+}
+
+
 }

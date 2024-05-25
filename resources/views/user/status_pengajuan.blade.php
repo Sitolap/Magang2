@@ -18,40 +18,40 @@
             <div class="col-12">
                 <h4 class="text-center mb-4">Status Pengajuan Magang</h4>
                 <h1>Detail Pendaftar Magang</h1>
-                    <p>Nama: {{ $pemagang->nama }}</p>
-                    <p>Email: {{ $pemagang->email }}</p>
-                    <p>Status: {{ $pemagang->status }}</p>
+                <p>Nama: {{ $pemagang->nama }}</p>
+                <p>Email: {{ $pemagang->email }}</p>
+                <p>Status: {{ $pemagang->status }}</p>
 
-                    {{-- <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $progress }}%">
-                            {{ $status }}
-                        </div>
-                    </div> --}}
-
-                {{-- <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar"
-                        style="width: {{ $pemagang->progress }}%"
-                        aria-valuenow="{{ $pemagang->progress }}" aria-valuemin="0" aria-valuemax="100">
-                        {{ $pemagang->statusText }}</div>
-                </div> --}}
-
-                <div>
-                    <div style="width: 100%; background-color: #e0e0e0;">
-                        <div
-                            style="width:
-                    @if ($pemagang->status == 'pengajuan terkirim') 25%
-                    @elseif($pemagang->status == 'pengajuan dilihat') 50%
-                    @elseif($pemagang->status == 'surat balasan dibuat') 75%
-                    @else 100%
-                    @endif;
-                    background-color: #4caf50; padding: 5px; color: white;">
-                            {{ $pemagang->status }}
+                @if ($pemagang->status == 'ditolak')
+                    <div class="alert alert-danger">
+                        <h4 class="alert-heading">Pengajuan Ditolak</h4>
+                        <p>Maaf, pengajuan magang Anda ditolak. Terima kasih atas partisipasi Anda.</p>
+                    </div>
+                @else
+                    <div>
+                        <div style="width: 100%; background-color: #e0e0e0;">
+                            <div style="width:
+                                @if ($pemagang->status == 'pengajuan terkirim') 25%
+                                @elseif($pemagang->status == 'pengajuan dilihat') 50%
+                                @elseif($pemagang->status == 'surat balasan dibuat') 75%
+                                @else 100%
+                                @endif;
+                                background-color:
+                                @if ($pemagang->status == 'pengajuan terkirim') #0000FF
+                                @elseif($pemagang->status == 'pengajuan dilihat') #0000FF
+                                @elseif($pemagang->status == 'surat balasan dibuat') #0000FF
+                                @else #0000FF
+                                @endif;
+                                padding: 5px; color: white;">
+                                {{ $pemagang->status }}
+                            </div style='background-color:'>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

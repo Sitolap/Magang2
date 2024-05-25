@@ -41,6 +41,13 @@ Route::middleware(['auth'])->group(function ()
     Route::get('/daftar-pemagang',  [AdminController::class, 'pemagang'])->name('pemagang');
     Route::get('/pemagang/{id}/detail', [AdminController::class, 'detail'])->name('detail');
     Route::post('/admin/internship-applications/{pemagang}/update-status', [AdminController::class, 'updateStatus'])->name('admin.pemagang.update-status');
+    Route::get('/mahasiswa/search', [AdminController::class, 'search'])->name('mahasiswa.search');
+    Route::get('/pemagang/sortir', [AdminController::class, 'sortir'])->name('pemagang.sortir');
+    Route::get('/admin/files/{id}', [FileController::class, 'file'])->name('admin.files');
+    Route::post('/admin/pemagang/{id}/accept', [MagangController::class, 'accept'])->name('admin.pemagang.accept');
+    Route::post('/admin/pemagang/{id}/reject', [MagangController::class, 'reject'])->name('admin.pemagang.reject');
+
+
 
 });
 

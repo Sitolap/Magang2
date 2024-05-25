@@ -28,7 +28,7 @@ return new class extends Migration
             $table->date('magang_dimulai');
             $table->date('magang_berakhir');
             $table->text('anggota_kelompok');
-            $table->enum('status', ['pengajuan terkirim', 'pengajuan dilihat', 'surat balasan dibuat', 'surat balasan tersedia'])->default('pengajuan terkirim');
+            $table->enum('status', ['pengajuan terkirim', 'pengajuan dilihat', 'surat balasan dibuat', 'surat balasan tersedia', 'ditolak'])->default('pengajuan terkirim');
             $table->timestamps();
         });
     }

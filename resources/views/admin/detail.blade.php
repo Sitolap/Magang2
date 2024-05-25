@@ -131,57 +131,72 @@
                             </b>
                         </div>
                         <br>
-                        <div class="rectangle1">Pas Foto:</div>
-                        <div class="rectangle1">Surat Pengantar</div>
-                        <div class="rectangle1">Transkrip Nilai</div>
-                        <div class="rectangle1">CV</div>
-                        <div class="rectangle1">Portofolio</div>
+
+
+                        <div class="container">
+
+
+                            <div class="container">
+
+                                    @foreach (['pas_foto', 'surat_pengantar', 'transkrip_nilai', 'cv', 'portofolio'] as $type)
+                                        <div class="rectangle1">{{ ucfirst(str_replace('_', ' ', $type)) }}:
+                                            @php
+                                                $file = $files->where('file_type', $type)->first();
+                                            @endphp
+                                            @if ($file)
+                                                <a href="{{ asset('storage/' . $file->file_path) }}">{{ $file->name }}</a>
+                                            @else
+                                                <span>Tidak ada file</span>
+                                            @endif
+                                        </div>
+                                    @endforeach
+
+                            </div>
+                        </div>
 
 
 
                     </div>
-                    <br>
-                    <br>
-                    <div class="container1">
-                        <form action="{{ route('admin.pemagang.update-status', $pemagang->id) }}" method="POST"
-                            enctype="multipart/form-data">
+
+
+                        <form action="{{ route('admin.pemagang.update-status', $pemagang->id) }}" method="POST" enctype="multipart/form-data" class="mb-3">
                             @csrf
-                            <div>
-                                <label for="status">Status:</label>
-                                <select name="status">
-                                    <option value="pengajuan terkirim"
-                                        {{ $pemagang->status == 'pengajuan terkirim' ? 'selected' : '' }}>Pengajuan
-                                        Terkirim</option>
-                                    <option value="pengajuan dilihat"
-                                        {{ $pemagang->status == 'pengajuan dilihat' ? 'selected' : '' }}>Pengajuan
-                                        Dilihat</option>
-                                    <option value="surat balasan dibuat"
-                                        {{ $pemagang->status == 'surat balasan dibuat' ? 'selected' : '' }}>Surat
-                                        Balasan Dibuat</option>
-                                    <option value="surat balasan tersedia"
-                                        {{ $pemagang->status == 'surat balasan tersedia' ? 'selected' : '' }}>Surat
-                                        Balasan Tersedia</option>
+                            <div class="mt-3">
+                                <label for="status" class="form-label">Status:</label>
+                                <select name="status" class="form-select">
+                                    <option value="pengajuan terkirim" {{ $pemagang->status == 'pengajuan terkirim' ? 'selected' : '' }}>Pengajuan Terkirim</option>
+                                    <option value="pengajuan dilihat" {{ $pemagang->status == 'pengajuan dilihat' ? 'selected' : '' }}>Pengajuan Dilihat</option>
+                                    <option value="surat balasan dibuat" {{ $pemagang->status == 'surat balasan dibuat' ? 'selected' : '' }}>Surat Balasan Dibuat</option>
+                                    <option value="surat balasan tersedia" {{ $pemagang->status == 'surat balasan tersedia' ? 'selected' : '' }}>Surat Balasan Tersedia</option>
                                 </select>
                             </div>
 
-                            <div id="response-document" style="display: none;">
-                                <label for="response_document">Upload Surat Balasan:</label>
-                                <input type="file" name="response_document">
+                            <div id="response-document" style="display: none;" class="mb-3">
+                                <label for="response_document" class="form-label">Upload Surat Balasan:</label>
+                                <input type="file" name="response_document" class="form-control">
                             </div>
 
                             <button type="submit" class="btn btn-primary mt-3">Update Status</button>
                         </form>
 
-                        <script>
-                            document.querySelector('select[name="status"]').addEventListener('change', function() {
-                                if (this.value === 'surat balasan tersedia') {
-                                    document.getElementById('response-document').style.display = 'block';
-                                } else {
-                                    document.getElementById('response-document').style.display = 'none';
-                                }
-                            });
-                        </script>
-                    </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <form action="{{ route('admin.pemagang.accept', $pemagang->id) }}" method="POST" class="me-2">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success d-block w-100">Diterima</button>
+                                </form>
+                            </div>
+                            <div class="col-6">
+                                <form action="{{ route('admin.pemagang.reject', $pemagang->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger d-block w-100">Ditolak</button>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
                     <br>
                     <br>
 

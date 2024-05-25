@@ -22,26 +22,28 @@ class FileController extends Controller
             'transkrip_nilai' => 'required|file|mimes:pdf',
             'pas_foto' => 'required|file|mimes:jpeg,png,jpg',
         ], [
-            'surat_pengantar' => 'Surat Pengantar Harus Berbentuk PDF',
-            'cv' => 'CV Harus Berbentuk PDF',
-            'portofolio' => 'Portofolio Harus Berbentuk PDF',
-            'transkrip_nilai' => 'Format file Harus Berbentuk PDF',
-            'pas_foto.required' => 'Pas Foto Harus Berbentuk jpeg,png,jpg'
+            'surat_pengantar.required' => 'Surat Pengantar Harus Berbentuk PDF',
+            'cv.required' => 'CV Harus Berbentuk PDF',
+            'portofolio.required' => 'Portofolio Harus Berbentuk PDF',
+            'transkrip_nilai.required' => 'Transkrip Nilai Harus Berbentuk PDF',
+            'pas_foto.required' => 'Pas Foto Harus Berbentuk jpeg, png, atau jpg'
         ]);
 
         $files = $request->only(['surat_pengantar', 'cv', 'portofolio', 'transkrip_nilai', 'pas_foto']);
         $userID = Auth::id();
 
         foreach ($files as $key => $file) {
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads', $fileName);
+            if ($file) {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $filePath = $file->storeAs('uploads', $fileName, 'public');
 
-            File::create([
-                'user_id' => $userID,
-                'name' => $fileName,
-                'file_path' => $filePath,
-                'file_type' => $key
-            ]);
+                File::create([
+                    'user_id' => $userID,
+                    'name' => $fileName,
+                    'file_path' => 'uploads/' . $fileName,
+                    'file_type' => $key
+                ]);
+            }
         }
 
         return redirect()->route('dokumen_kirim');
@@ -49,8 +51,7 @@ class FileController extends Controller
 
     public function file($id)
     {
-        $files=File::find(1);
+        $files = File::where('user_id', $id)->get();
         return view('admin.detail', compact('files'));
     }
-
 }

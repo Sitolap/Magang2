@@ -14,8 +14,8 @@
 
     <nav class="navbar navbar-expand-lg" style="background-color: rgb(190, 190, 195);">
         <div class="container-fluid">
-            <a class="navbar-brand img-fluid" href="#"><img src="Asset/img/kominfo-1.png" alt=""
-                    style="width: 120px; height: 50%; " class="img-fluid"></a>
+            <a class="navbar-brand img-fluid" href="#"><img src="{{ asset('Asset/img/kominfo-1.png') }}"
+                    alt="" style="width: 120px; height: 50%; " class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,7 +62,7 @@
                     <br>
                     <a href="#"
                         class="d-flex align-items-center pb-8 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <img src="Asset/img/carbon-user-avatar-filled.png" alt=""
+                        <img src="{{ asset('Asset/img/carbon-user-avatar-filled.png') }}" alt=""
                             style="width: 50px; height: 100%;" class="img-fluid me-3">
                         <div class="d-flex flex-column">
                             <span class="fs-5 d-none d-sm-inline mb-2">
@@ -79,7 +79,7 @@
 
                     <br>
 
-                        @include('layouts.navbarAdmin')
+                    @include('layouts.navbarAdmin')
                     <hr>
                 </div>
             </div>
@@ -101,11 +101,9 @@
                 <br>
                 <div class="container">
                     <div class="text-primary">
-                        <h3 style="margin-left: 90px;">Daftar Pengajuan Magang</h3>
+                        <h3>Daftar Pengajuan Magang</h3>
                     </div>
-                    <div class="text-black">
-                        <h6 style="margin-left: 90px">Menampilkan 1-5 dari 25 </h6>
-                    </div>
+
 
                     <style>
                         input[type="text"] {
@@ -131,10 +129,11 @@
                     </style>
 
                     <div class="d-flex justify-content-end">
-                        <form action="#" method="get">
-                            <input type="text" name="search">
-                            <input type="submit" value="Search">
+                        <form action="{{ route('mahasiswa.search') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search...">
+                            <button type="submit" class="btn btn-primary mx-2 pt-2">Search</button>
                         </form>
+
                     </div>
                 </div>
                 <br>
@@ -175,45 +174,96 @@
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>Nama</th>
-                            <th>Instansi</th>
+                            <th>Nama
+                                <div class="dropdown">
+                                    <i class="fas fa-sort dropdown-toggle" role="button" id="namaDropdown"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <div class="dropdown-menu" aria-labelledby="namaDropdown">
+                                        <a class="dropdown-item"
+                                            href="{{ route('pemagang.sortir', ['sort_by' => 'nama_asc']) }}">Nama
+                                            A-Z</a>
+                                        <a class="dropdown-item"
+                                            href="{{ route('pemagang.sortir', ['sort_by' => 'nama_desc']) }}">Nama
+                                            Z-A</a>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>Instansi
+                                <div class="dropdown">
+                                    <i class="fas fa-sort dropdown-toggle" role="button" id="instansiDropdown"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <div class="dropdown-menu" aria-labelledby="instansiDropdown">
+                                        <a class="dropdown-item"
+                                            href="{{ route('pemagang.sortir', ['sort_by' => 'nama_universitas_asc']) }}">Nama
+                                            Universitas A-Z</a>
+                                        <a class="dropdown-item"
+                                            href="{{ route('pemagang.sortir', ['sort_by' => 'nama_universitas_desc']) }}">Nama
+                                            Universitas Z-A</a>
+                                    </div>
+                                </div>
+                            </th>
                             <th>Anggota Kelompok</th>
-                            <th>Tanggal Pengajuan</th>
+                            <th>Tanggal Pengajuan
+                                <div class="dropdown">
+                                    <i class="fas fa-sort dropdown-toggle" role="button" id="tanggalDropdown"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <div class="dropdown-menu" aria-labelledby="tanggalDropdown">
+                                        <a class="dropdown-item"
+                                            href="{{ route('pemagang.sortir', ['sort_by' => 'created_at_asc']) }}">Tanggal
+                                            Pengajuan Terbaru</a>
+                                        <a class="dropdown-item"
+                                            href="{{ route('pemagang.sortir', ['sort_by' => 'created_at_desc']) }}">Tanggal
+                                            Pengajuan Terlama</a>
+                                    </div>
+                                </div>
+                            </th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
+
                     </thead>
                     <tbody>
+                        @php
+                            $i = 1; // Inisialisasi nomor urut
+                        @endphp
                         @foreach ($pemagangs as $pemagang)
                             <tr>
-                                <td>1</td>
+                                <td>{{ $i++ }}</td>
                                 <td>{{ $pemagang->nama }}</td>
                                 <td>{{ $pemagang->nama_universitas }}</td>
                                 <td>{{ $pemagang->anggota_kelompok }}</td>
                                 <td>{{ $pemagang->created_at }}</td>
                                 <td>
-                                    @if ($pemagang->status==='pengajuan terkirim')
+                                    @if ($pemagang->status === 'pengajuan terkirim')
                                         <p class="" style="background-color: #FFCD29">
-                                    @elseif ($pemagang->status==='pengajuan dilihat')
-                                        <p class="bg-success">
-                                    @elseif ($pemagang->status==='surat balasan dibuat')
-                                        <p class="bg-success">
-                                    @elseif ($pemagang->status==='surat balasan tersedia')
-                                        <p class="bg-success">
+                                        @elseif ($pemagang->status === 'pengajuan dilihat')
+                                        <p class="bg-success text-white">
+                                        @elseif ($pemagang->status === 'surat balasan dibuat')
+                                        <p class="bg-success text-white">
+                                        @elseif ($pemagang->status === 'surat balasan tersedia')
+                                        <p class="bg-success text-white">
+                                        @elseif ($pemagang->status === 'ditolak')
+                                        <p class="bg-danger text-white">
                                     @endif
                                     {{ $pemagang->status }}
                                 </td>
                                 <td>
                                     <a href ="/pemagang/{{ $pemagang->id }}/detail">
-                                    <button class="btn btn-primary">Detail</button>
+                                        <button class="btn btn-primary">Detail</button>
                                     </a>
                                 </td>
                             </tr>
-
                         @endforeach
 
                     </tbody>
                 </table>
+                {{-- <p class="my-4">Menampilkan 3 data</p>
+                {{ $pemagangs->links() }} --}}
+
+                <div class="pagination-info">
+                    Menampilkan data {{ $pemagangs->firstItem() }} sampai {{ $pemagangs->lastItem() }} dari {{ $pemagangs->total() }} jumlah total pendaftar
+                </div>
+                @include('pagination.custom', ['paginator' => $pemagangs])
                 <br>
             </div>
         </div>
