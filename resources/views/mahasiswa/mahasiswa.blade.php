@@ -115,14 +115,21 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-row mb-3">
+                <div class="form-group col-md-4">
+                    <label for="anggota_kelompok" class="form-label">Nama Anggota Kelompok</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="anggota_kelompok" id="anggota_kelompok"></textarea>
+                </div>
+            </div>
+
+            {{-- <div class="form-group">
                 <label for="pilihan">Pilih Jumlah Anggota Kelompok:</label>
                 <select name="anggota_kelompok" id="anggota_kelompok" class="form-control">
                     @for ($i = 1; $i <= 6; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                 </select>
-            </div>
+            </div> --}}
 
             <div id="form-inputs">
                 <!-- Form input akan ditambahkan di sini -->
@@ -137,7 +144,7 @@
     @include('layouts.footer')
 
 
-    <script>
+    {{-- <script>
         document.getElementById('anggota_kelompok').addEventListener('change', function() {
             var pilihan = this.value;
             var formInputs = document.getElementById('form-inputs');
@@ -153,7 +160,7 @@
                 formInputs.appendChild(div);
             }
         });
-    </script>
+    </script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

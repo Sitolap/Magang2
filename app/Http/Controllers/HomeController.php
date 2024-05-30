@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         if(Auth::id())
         {
@@ -30,12 +31,17 @@ class HomeController extends Controller
 
             if( $usertype == 'user')
             {
-                return view('beranda');
+                return view('user.beranda');
             }
 
             else if( $usertype == 'admin')
             {
-                return view('admin.dashboard-admin');
+                $count = Mahasiswa::count();
+                $acceptedCount = Mahasiswa::where('status', 'diterima')->count();
+                $pemagang = Mahasiswa::paginate(3);
+                
+                return view('admin.dashboard-admin', compact('count', 'acceptedCount', 'pemagang'));
+
             }
 
             else

@@ -78,7 +78,7 @@
                     </a>
                     <br>
 
-                   @include('layouts.navbarAdmin')
+                    @include('layouts.navbarAdmin')
 
                     <hr>
                 </div>
@@ -104,7 +104,8 @@
                         <h3 style="margin-left: 90px;">Daftar Peserta Magang</h3>
                     </div>
                     <div class="text-black">
-                        <h6 style="margin-left: 90px">Menampilkan 1-5 dari 25 </h6>
+                        <h6 style="margin-left: 90px">Menampilkan {{ $mahasiswa->count() }} dari
+                            {{ \App\Models\Mahasiswa::where('status', 'diterima')->count() }}</h6>
                     </div>
 
                     <style>
@@ -165,68 +166,30 @@
                             <th>NO</th>
                             <th>Nama</th>
                             <th>Instansi</th>
-                            <th>Penampatan</th>
+                            <th>Penempatan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>Universitas XXX</td>
-                            <td>Biro Kepegawaian & Organisasi</td>
-                            <td>
-                                <a href ="/detail-terima">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>SMK XXX</td>
-                            <td>XXXXXX</td>
-                            <td>
-                                <a href ="/detail-terima">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>
-                                <a href ="/detail-terima">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>
-                                <a href ="/detail-terima">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>XX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>XXXXXX</td>
-                            <td>
-                                <a href ="/detail-terima">
-                                <button>Detail</button>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($mahasiswa as $index => $mahasiswa)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $mahasiswa->nama }}</td>
+                                <td>{{ $mahasiswa->nama_universitas }}</td>
+                                <td>{{ $mahasiswa->penempatan }}</td>
+                                <td>
+                                    <a href="{{ route('pengajuan.edit', $mahasiswa->id) }}">
+                                        <button class="btn btn-primary">Edit</button>
+                                    </a>
+                                    <a href="{{ route('detail', $mahasiswa->id) }}">
+                                        <button class="btn btn-primary">Detail</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
+
                 <br>
             </div>
         </div>

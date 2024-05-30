@@ -30,7 +30,8 @@ class MahasiswaController extends Controller
             'no_telepon' => 'required',
             'magang_dimulai' => 'required|date',
             'magang_berakhir' => 'required|date',
-            'anggota_kelompok' => 'required'
+            'anggota_kelompok' => 'required',
+            'penempatan' => 'nullable|string|max:255'
         ]);
 
         $data = $request->all();
@@ -38,7 +39,7 @@ class MahasiswaController extends Controller
 
         // Proses data anggota kelompok sebelum disimpan ke database
         // Proses data anggota kelompok sebelum disimpan ke database
-        
+
         Mahasiswa::create($data);
 
 

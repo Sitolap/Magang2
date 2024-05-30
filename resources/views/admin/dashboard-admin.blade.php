@@ -8,6 +8,37 @@
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+                text-align: center;
+            }
+
+            th {
+                background-color: #f2f2f2;
+                text-align: center;
+            }
+
+            .diterima {
+                background-color: #00ff48;
+            }
+
+            .ditolak {
+                background-color: #D20000;
+            }
+
+            .pending {
+                background-color: #FFCD29;
+            }
+        </style>
 </head>
 
 <body>
@@ -78,30 +109,18 @@
                             <span class="text-muted"></span>
                         </div>
                     </a>
-
-
-                    <br>
-
-                    <style>
-                        .highlight {
-                            background-color: #8E8E8E80 !important;
-                        }
-                    </style>
-
                     @include('layouts.navbarAdmin')
-
-                    <hr>
                 </div>
             </div>
 
 
             <div class="col">
-                <div class="container mt-sm-2">
-                    <div class="row justify-content-around">
+                <div class="container mt-sm-4">
+                    <div class="row justify-content-around mb-5">
                         <div class="col-md-4">
                             <div class="card custom-card mx-auto btn-outline-primary">
                                 <div class="card-body text-center">
-                                    <h1 class="card-title">25</h1>
+                                    <h1 class="card-title">{{ $count }}</h1>
                                     <h5>Pengajuan Magang</h5>
 
                                 </div>
@@ -110,88 +129,16 @@
                         <div class="col-md-4">
                             <div class="card custom-card mx-auto btn-outline-primary">
                                 <div class="card-body text-center">
-                                    <h1 class="card-title">15</h1>
+                                    <h1 class="card-title">{{ $acceptedCount }}</h1>
                                     <h5>Peserta Magang</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
-                <div class="container">
-                    <div class="text-primary">
-                        <h3 style="margin-left: 90px;">Daftar Pengajuan Magang</h3>
-                    </div>
-                    <br>
-                    <div class="container mt-sm-2">
-                    <div class="row justify-content-around">
-                        <div class="col-md-4">
-                            <div class="card custom-card mx-auto btn-outline-primary">
-                                <div class="card-body text-center">
-                                    <h1 class="card-title">0</h1>
+                @include('admin.table-pengajuan')
 
 
-  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-  12
-  <span class="visually-hidden"> Jakarta </span>
-  </span>
-
-                                    <h5>Jakarta</h5>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card custom-card mx-auto btn-outline-primary">
-                                <div class="card-body text-center">
-                                    <h1 class="card-title">0</h1>
-                                    <h5>Tangerang</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card custom-card mx-auto btn-outline-primary">
-                                <div class="card-body text-center">
-                                    <h1 class="card-title">0</h1>
-                                    <h5>Bogor</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="container mt-sm-2">
-                    <div class="row justify-content-around">
-                        <div class="col-md-4">
-                            <div class="card custom-card mx-auto btn-outline-primary">
-                                <div class="card-body text-center">
-                                    <h1 class="card-title">0</h1>
-                                    <h5>Bekasi</h5>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card custom-card mx-auto btn-outline-primary">
-                                <div class="card-body text-center">
-                                    <h1 class="card-title">0</h1>
-                                    <h5>Depok</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card custom-card mx-auto btn-outline-primary">
-                                <div class="card-body text-center">
-                                    <h1 class="card-title">0</h1>
-                                    <h5>Tangerang Selatan</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
             </div>
         </div>
 

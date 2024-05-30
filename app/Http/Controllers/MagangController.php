@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Mahasiswa;
+use Barryvdh\DomPDF\Facade;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf as DomPDF;
 
 class MagangController extends Controller
 {
     public function index()
     {
-        return view('kategori');
+        $user = Auth::user();
+        $pemagang = Mahasiswa::where('user_id', $user->id)->first();
+
+        if ($pemagang) {
+            // Jika pengguna sudah mendaftar
+            return view('user.status_pengajuan', compact('pemagang'));
+        } else {
+            // Jika pengguna baru dan belum mendaftar
+            return view('user.kategori');
+        }
+
     }
 
     public function status(Request $request, $id)
@@ -34,29 +49,62 @@ class MagangController extends Controller
             $progress = 0;
             $status = 'Pendaftaran Ditolak';
         }
-        return view('user.status_pengajuan', compact('pemagang', 'progress', 'status'));
+        return view('user.status_pengajuan', compact('pemagang', 'progress', 'status', 'id'));
 
     }
 
+
     // AdminController.php
 
-public function accept($id)
-{
-    $pemagang = Mahasiswa::findOrFail(1);
-    $pemagang->status = 'surat balasan dibuat';
-    $pemagang->save();
+    public function accept($id)
+    {
+        
+        try {
+            $pemagang = Mahasiswa::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Mahasiswa tidak ditemukan.');
+        }
+        $pemagang->status = 'diterima';
+        $pemagang->save();
 
-    return redirect()->back()->with('success', 'Status pemagang telah diubah menjadi Surat Balasan Dibuat.');
-}
+        $pdf =  DomPDF::loadView('user.surat_balasan', ['pemagang' => $pemagang]);
 
-public function reject($id)
-{
-    $pemagang = Mahasiswa::findOrFail(1);
-    $pemagang->status = 'ditolak';
-    $pemagang->save();
+        // Simpan file PDF ke storage
+        $path = storage_path('app/public/surat_balasan_' . $pemagang->id . '.pdf');
+        $pdf->save($path);
+        return redirect()->route('user.surat_balasan', ['id' => $pemagang->id])->with('success', 'Status pemagang telah diubah menjadi Diterima.');
+    }
 
-    return redirect()->back()->with('success', 'Status pemagang telah diubah menjadi Pengajuan Magang Anda Ditolak.');
-}
+    public function reject($id)
+    {
+        $pemagang = Mahasiswa::findOrFail($id);
+        $pemagang->status = 'ditolak';
+        $pemagang->save();
 
+        return redirect()->back()->with('success', 'Status pemagang telah diubah menjadi Pengajuan Magang Anda Ditolak.');
+    }
+
+    public function show()
+    {
+        return view('user.show');
+    }
+    public function nilai()
+    {
+        return view('user.sertifikat_nilai');
+    }
+
+    public function suratBalasan($id)
+    {
+        $pemagang = Mahasiswa::findOrFail($id);
+        return view('user.surat_balasan', compact('pemagang'));
+    }
+
+    public function downloadSuratBalasan($id)
+    {
+        $pemagang = Mahasiswa::findOrFail($id);
+        $pdf =  DomPDF::loadView('user.surat_balasan', compact('pemagang'));
+
+        return $pdf->download('surat_balasan_' . $pemagang->id . '.pdf');
+    }
 
 }

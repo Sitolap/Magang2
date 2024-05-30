@@ -226,29 +226,31 @@
                         @php
                             $i = 1; // Inisialisasi nomor urut
                         @endphp
-                        @foreach ($pemagangs as $pemagang)
+                        @foreach ($pemagang as $pemagangs)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $pemagang->nama }}</td>
-                                <td>{{ $pemagang->nama_universitas }}</td>
-                                <td>{{ $pemagang->anggota_kelompok }}</td>
-                                <td>{{ $pemagang->created_at }}</td>
+                                <td>{{ $pemagangs->nama }}</td>
+                                <td>{{ $pemagangs->nama_universitas }}</td>
+                                <td>{{ $pemagangs->anggota_kelompok }}</td>
+                                <td>{{ $pemagangs->created_at }}</td>
                                 <td>
-                                    @if ($pemagang->status === 'pengajuan terkirim')
+                                    @if ($pemagangs->status === 'pengajuan terkirim')
                                         <p class="" style="background-color: #FFCD29">
-                                        @elseif ($pemagang->status === 'pengajuan dilihat')
+                                        @elseif ($pemagangs->status === 'pengajuan dilihat')
                                         <p class="bg-success text-white">
-                                        @elseif ($pemagang->status === 'surat balasan dibuat')
+                                        @elseif ($pemagangs->status === 'surat balasan dibuat')
                                         <p class="bg-success text-white">
-                                        @elseif ($pemagang->status === 'surat balasan tersedia')
+                                        @elseif ($pemagangs->status === 'surat balasan tersedia')
                                         <p class="bg-success text-white">
-                                        @elseif ($pemagang->status === 'ditolak')
+                                        @elseif ($pemagangs->status === 'ditolak')
                                         <p class="bg-danger text-white">
+                                        @elseif ($pemagangs->status === 'diterima')
+                                        <p class="bg-success text-white">
                                     @endif
-                                    {{ $pemagang->status }}
+                                    {{ $pemagangs->status }}
                                 </td>
                                 <td>
-                                    <a href ="/pemagang/{{ $pemagang->id }}/detail">
+                                    <a href ="/pemagang/{{ $pemagangs->id }}/detail">
                                         <button class="btn btn-primary">Detail</button>
                                     </a>
                                 </td>
@@ -257,13 +259,12 @@
 
                     </tbody>
                 </table>
-                {{-- <p class="my-4">Menampilkan 3 data</p>
-                {{ $pemagangs->links() }} --}}
+
 
                 <div class="pagination-info">
-                    Menampilkan data {{ $pemagangs->firstItem() }} sampai {{ $pemagangs->lastItem() }} dari {{ $pemagangs->total() }} jumlah total pendaftar
+                    Menampilkan data {{ $pemagang->firstItem() }} sampai {{ $pemagang->lastItem() }} dari {{ $pemagang->total() }} jumlah total pendaftar
                 </div>
-                @include('pagination.custom', ['paginator' => $pemagangs])
+                @include('pagination.custom', ['paginator' => $pemagang])
                 <br>
             </div>
         </div>

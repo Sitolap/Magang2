@@ -126,4 +126,12 @@ return [
     // Provider Lain
     AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
 
+    
+
+    // 'aliases' => [
+    //     // ...
+    //     'PDF' => Barryvdh\DomPDF\Facade::class,
+    // ]
+    //
+
 ];

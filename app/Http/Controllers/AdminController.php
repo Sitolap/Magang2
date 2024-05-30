@@ -12,20 +12,24 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $pemagangs = Mahasiswa::paginate(3);
+        $pemagang = Mahasiswa::paginate(3);
 
-        return view('admin.pengajuan-magang', compact('pemagangs'));
+        return view('admin.pengajuan-magang', compact('pemagang'));
     }
 
     public function detail($id)
     {
         $pemagang = Mahasiswa::find($id);
+        if (!$pemagang) {
+            return redirect()->back()->with('error', 'Pemagang tidak ditemukan.');
+        }
         $files = File::where('user_id', $id)->get();
         return view('admin.detail', compact('pemagang', 'files'));
     }
     public function pemagang()
     {
-        return view('admin.daftar-pemagang');
+        $mahasiswa = Mahasiswa::where('status', 'diterima')->get();
+        return view('admin.daftar-pemagang', compact('mahasiswa'));
     }
 
     public function updateStatus(Request $request, $id)
@@ -60,29 +64,54 @@ class AdminController extends Controller
 
         switch ($sortBy) {
             case 'nama_asc':
-                $pemagangs = Mahasiswa::orderBy('nama', 'asc')->paginate(3);
+                $pemagang = Mahasiswa::orderBy('nama', 'asc')->paginate(3);
                 break;
             case 'nama_desc':
-                $pemagangs = Mahasiswa::orderBy('nama', 'desc')->paginate(3);
+                $pemagang = Mahasiswa::orderBy('nama', 'desc')->paginate(3);
                 break;
             case 'instansi_asc':
-                $pemagangs = Mahasiswa::orderBy('instansi', 'asc')->paginate(3);
+                $pemagang = Mahasiswa::orderBy('instansi', 'asc')->paginate(3);
                 break;
             case 'instansi_desc':
-                $pemagangs = Mahasiswa::orderBy('instansi', 'desc')->paginate(3);
+                $pemagang = Mahasiswa::orderBy('instansi', 'desc')->paginate(3);
                 break;
             case 'tanggal_asc':
-                $pemagangs = Mahasiswa::orderBy('created_at', 'asc')->paginate(3);
+                $pemagang = Mahasiswa::orderBy('created_at', 'asc')->paginate(3);
                 break;
             case 'tanggal_desc':
-                $pemagangs = Mahasiswa::orderBy('created_at', 'desc')->paginate(3);
+                $pemagang = Mahasiswa::orderBy('created_at', 'desc')->paginate(3);
                 break;
             default:
-                $pemagangs = Mahasiswa::paginate(3);
+                $pemagang = Mahasiswa::paginate(3);
                 break;
         }
 
 
-        return view('admin.pengajuan-magang', compact('pemagangs'));
+        return view('admin.pengajuan-magang', compact('pemagang'));
+    }
+
+    public function magang()
+    {
+        $count = Mahasiswa::count();
+        return view('admin.dashboard-admin', compact('count'));
+    }
+
+    public function edit($id)
+    {
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        return view('admin.edit', compact('mahasiswa'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'penempatan' => 'nullable|string|max:255',
+        ]);
+
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa->penempatan = $request->penempatan;
+        $mahasiswa->save();
+
+        return redirect()->route('pemagang')->with('success', 'Penempatan updated successfully.');
     }
 }

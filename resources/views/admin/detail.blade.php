@@ -106,7 +106,7 @@
                                 <h5> Perguruan Tinggi/Univesitas <h5>
                             </b>
                         </div>
-                        <form action="/pemagang/{{ $pemagang->id }}" method="POST">
+                        <form action="{{ route('detail', $pemagang->id) }}" method="POST">
                             @csrf
 
                             <div class="rectangle">
@@ -121,7 +121,7 @@
                             <div class="rectangle1">Periode Magang: {{ $pemagang->magang_dimulai }} Sampai
                                 {{ $pemagang->magang_berakhir }}</div>
                             <div class="rectangle">Jumlah Anggota Kelompok</div>
-                            <div class="rectangle1">Nama Anggota Kelompok: {{ $pemagang->anggota_kelompot }}</div>
+                            <div class="rectangle1">Nama Anggota Kelompok: {{ $pemagang->anggota_kelompok }}</div>
 
                         </form>
 

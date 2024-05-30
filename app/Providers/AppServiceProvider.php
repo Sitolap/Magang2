@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Mahasiswa;
+use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +24,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+        View::composer(['mahasiswa.*', 'user.*'], function ($view) {
+            if (Auth::check()) {
+                $user = Auth::user();
+                $pemagang = Mahasiswa::where('user_id', $user->id)->first();
+                $view->with('pemagang', $pemagang);
+            }
+        });
+
     }
 }
