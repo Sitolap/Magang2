@@ -51,11 +51,12 @@ class AdminController extends Controller
     {
         $searchTerm = $request->input('search');
 
-        $pemagangs = Mahasiswa::where('nama', 'LIKE', "%{$searchTerm}%")
+        $pemagang = Mahasiswa::where('nama', 'LIKE', "%{$searchTerm}%")
                             ->orWhere('nama_universitas', 'LIKE', "%{$searchTerm}%")
+                            ->orWhere('anggota_kelompok', 'LIKE', "%{$searchTerm}%")
                             ->paginate(3);
 
-        return view('admin.pengajuan-magang', compact('pemagangs'));
+        return view('admin.pengajuan-magang', compact('pemagang'));
     }
 
     public function sortir(Request $request)

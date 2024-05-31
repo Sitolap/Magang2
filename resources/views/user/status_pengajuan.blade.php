@@ -16,8 +16,8 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
-                <h4 class="text-center mb-4">Status Pengajuan Magang</h4>
-                <h1>Detail Pendaftar Magang</h1>
+                <h1 class="text-center mb-4">Status Pengajuan Magang</h1>
+                <h4>Detail Pendaftar Magang</h4>
                 <p>Nama: {{ $pemagang->nama }}</p>
                 <p>Email: {{ $pemagang->email }}</p>
                 <p>Status: {{ $pemagang->status }}</p>

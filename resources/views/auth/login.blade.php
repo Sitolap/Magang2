@@ -92,6 +92,9 @@
                 </div>
             </div>
         </div>
+        <div class="copyrights text-center">
+            <p>Copyright © 2024; Designed by Tim 1 Pendidikan Teknik Informatika dan Komputer Universitas Negeri Jakarta</p>
+        </div>
 
     </div>
     <!-- JavaScript files-->

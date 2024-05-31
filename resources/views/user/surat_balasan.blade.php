@@ -39,7 +39,7 @@
                 <p>Perguruan Tinggi: {{ $pemagang->nama_universitas }}</p>
                 <p>Periode Magang: {{ $pemagang->magang_dimulai }} sampai {{ $pemagang->magang_berakhir }}</p>
                 <p>Anggota Kelompok: {{ $pemagang->anggota_kelompok }}</p>
-                <p>Posisi: [Posisi yang ditentukan]</p>
+                <p>Posisi: {{ $pemagang->penempatan }}</p>
                 <p>Tanggal Penerimaan: {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p>
             </div>
         @else
