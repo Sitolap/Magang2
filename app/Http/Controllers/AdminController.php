@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
+use Laracsv\Export;
 use App\Models\File;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
+use Maatwebsite\Excel\Excel;
+use App\Exports\PemagangExport;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 class AdminController extends Controller
 {
@@ -26,10 +29,50 @@ class AdminController extends Controller
         $files = File::where('user_id', $id)->get();
         return view('admin.detail', compact('pemagang', 'files'));
     }
+
+    public function detail_terima($id)
+    {
+        $pemagang = Mahasiswa::find($id);
+        return view('admin.detail-terima', compact('pemagang'));
+    }
+
+    public function updatePenempatanPenugasan(Request $request, $id)
+    {
+        $request->validate([
+            'penempatan' => 'required|string|max:255',
+            'penugasan' => 'required|string|max:255',
+        ]);
+
+        $pemagang = Mahasiswa::findOrFail($id);
+
+        if ($request->hasFile('surat_balasan')) {
+            $pemagang->surat_balasan = $request->file('surat_balasan')->store('documents', 'public');
+        }
+
+        if ($request->hasFile('id_card')) {
+            $pemagang->id_card = $request->file('id_card')->store('documents', 'public');
+        }
+
+        if ($request->hasFile('sertifikat')) {
+            $pemagang->sertifikat = $request->file('sertifikat')->store('documents', 'public');
+        }
+
+        if ($request->hasFile('surat_keterangan')) {
+            $pemagang->surat_keterangan = $request->file('surat_keterangan')->store('documents', 'public');
+        }
+
+        $pemagang->penempatan = $request->input('penempatan');
+        $pemagang->penugasan = $request->input('penugasan');
+        $pemagang->save();
+
+        return redirect()->back()->with('success', 'Dokumen berhasil diunggah dan informasi diperbarui.');
+
+
+    }
     public function pemagang()
     {
-        $mahasiswa = Mahasiswa::where('status', 'diterima')->get();
-        return view('admin.daftar-pemagang', compact('mahasiswa'));
+        $pemagang = Mahasiswa::where('status', 'diterima')->get();
+        return view('admin.daftar-pemagang', compact('pemagang'));
     }
 
     public function updateStatus(Request $request, $id)
@@ -57,6 +100,17 @@ class AdminController extends Controller
                             ->paginate(3);
 
         return view('admin.pengajuan-magang', compact('pemagang'));
+    }
+    public function search_terima(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $pemagang = Mahasiswa::where('nama', 'LIKE', "%{$searchTerm}%")
+                            ->orWhere('nama_universitas', 'LIKE', "%{$searchTerm}%")
+                            ->orWhere('penempatan', 'LIKE', "%{$searchTerm}%")
+                            ->paginate(3);
+
+        return view('admin.detail-terima', compact('pemagang'));
     }
 
     public function sortir(Request $request)
@@ -91,6 +145,13 @@ class AdminController extends Controller
         return view('admin.pengajuan-magang', compact('pemagang'));
     }
 
+    public function download()
+    {
+        $pemagang = Mahasiswa::all();
+        $csvExporter = new Export();
+        $csvExporter->build($pemagang, ['nama', 'nama_universitas', 'anggota_kelompok', 'created_at'])->download();
+    }
+
     public function magang()
     {
         $count = Mahasiswa::count();
@@ -99,20 +160,41 @@ class AdminController extends Controller
 
     public function edit($id)
     {
-        $mahasiswa = Mahasiswa::findOrFail($id);
-        return view('admin.edit', compact('mahasiswa'));
+        $pemagang = Mahasiswa::findOrFail($id);
+        return view('admin.detail-terima', compact('pemagang'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'penempatan' => 'nullable|string|max:255',
+            'penempatan' => 'required|string|max:255',
+            'penugasan' => 'required|string|max:255',
         ]);
 
-        $mahasiswa = Mahasiswa::findOrFail($id);
-        $mahasiswa->penempatan = $request->penempatan;
-        $mahasiswa->save();
+        $pemagang = Mahasiswa::findOrFail($id);
 
-        return redirect()->route('pemagang')->with('success', 'Penempatan updated successfully.');
+        if ($request->hasFile('surat_balasan')) {
+            $pemagang->surat_balasan = $request->file('surat_balasan')->store('documents', 'public');
+        }
+
+        if ($request->hasFile('id_card')) {
+            $pemagang->id_card = $request->file('id_card')->store('documents', 'public');
+        }
+
+        if ($request->hasFile('sertifikat')) {
+            $pemagang->sertifikat = $request->file('sertifikat')->store('documents', 'public');
+        }
+
+        if ($request->hasFile('surat_keterangan')) {
+            $pemagang->surat_keterangan = $request->file('surat_keterangan')->store('documents', 'public');
+        }
+
+        $pemagang->penempatan = $request->input('penempatan');
+        $pemagang->penugasan = $request->input('penugasan');
+        $pemagang->save();
+
+        return redirect()->back()->with('success', 'Dokumen berhasil diunggah dan informasi diperbarui.');
     }
+
+
 }

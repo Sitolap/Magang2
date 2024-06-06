@@ -28,7 +28,7 @@
                         <p>Maaf, pengajuan magang Anda ditolak. Terima kasih atas partisipasi Anda.</p>
                     </div>
                 @elseif ($pemagang->status == 'diterima')
-                    <div class="alert alert-success">
+                    <div >
                         <h4 class="alert-heading">Pengajuan Diterima</h4>
                         <p>Terima kasih atas partisipasi Anda. Pengajuan magang
                             Anda telah diterima. Silahkan datang ke kantor kami pada tanggal

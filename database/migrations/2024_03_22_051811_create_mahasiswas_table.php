@@ -30,6 +30,11 @@ return new class extends Migration
             $table->text('anggota_kelompok');
             $table->enum('status', ['pengajuan terkirim', 'pengajuan dilihat', 'surat balasan dibuat', 'surat balasan tersedia', 'ditolak', 'diterima'])->default('pengajuan terkirim');
             $table->string('penempatan')->nullable();
+            $table->string('penugasan')->nullable();
+            $table->string('surat_balasan')->nullable();
+            $table->string('id_card')->nullable();
+            $table->string('sertifikat')->nullable();
+            $table->string('surat_keterangan')->nullable();
             $table->timestamps();
         });
     }

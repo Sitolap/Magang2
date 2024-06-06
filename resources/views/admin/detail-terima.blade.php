@@ -11,7 +11,7 @@
 
     <nav class="navbar navbar-expand-lg" style="background-color: rgb(190, 190, 195);">
         <div class="container-fluid">
-            <a class="navbar-brand img-fluid" href="#"><img src="Asset/img/kominfo-1.png" alt=""
+            <a class="navbar-brand img-fluid" href="#"><img src="{{ asset('Asset/img/kominfo-1.png') }}" alt=""
                     style="width: 120px; height: 50%; " class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #00519de9">
@@ -58,7 +58,7 @@
                     <br>
                     <a href="#"
                         class="d-flex align-items-center pb-8 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <img src="Asset/img/carbon-user-avatar-filled.png" alt=""
+                        <img src="{{ asset('Asset/img/carbon-user-avatar-filled.png') }}" alt=""
                             style="width: 50px; height: 100%;" class="img-fluid me-3">
                         <div class="d-flex flex-column">
                             <span class="fs-5 d-none d-sm-inline mb-2">
@@ -128,7 +128,7 @@
             color: black;
             text-align: left;
             line-height: 40px; /* Tinggi setiap kolom */
-            border-radius: 10px; 
+            border-radius: 10px;
             border: 1px solid black;
         }
         .rectangle1 {
@@ -136,8 +136,16 @@
             color: black;
             text-align: left;
             line-height: 40px; /* Tinggi setiap kolom */
-            border-radius: 10px; 
+            border-radius: 10px;
             border: 1px solid black;
+        }
+
+        .rectangle input, .rectangle1 input {
+            width: 50%;
+            margin-left: 10px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #000;
         }
     </style>
 </head>
@@ -150,43 +158,47 @@
     </b>
         </div>
         <br>
-        <div class="rectangle">Nama: </div>
-        <div class="rectangle1">Jenjang Pendidikan:</div>
-        <div class="rectangle">Perguruan Tinggi/Universitas</div>
-        <div class="rectangle1">Fakultas</div>
-        <div class="rectangle">Program Studi</div>
-        <div class="rectangle1">Periode Magang</div>
-        <div class="rectangle">Penempatan</div>
-        <div class="rectangle1">Penugasan</div>
-        <br>
-        <br>
-        <div class="rectangle">
-        <b>
-        <h5>Dokumen<h5>
-    </b>
-        </div>
-        <br>
-        <form action="{{ route('files.store') }}" method="POST" enctype="multipart/form-data">
+        <div class="rectangle">Nama                         :{{ $pemagang->nama }}</div>
+        <div class="rectangle1">Jenjang Pendidikan          :{{ $pemagang->jenjang_pendidikan }}</div>
+        <div class="rectangle">Perguruan Tinggi/Universitas :{{ $pemagang->nama_universitas }}</div>
+        <div class="rectangle1">Fakultas                    :{{ $pemagang->fakultas }}</div>
+        <div class="rectangle">Program Studi                :{{ $pemagang->program_studi }}</div>
+        <div class="rectangle1">Periode Magang              :{{ $pemagang->magang_dimulai }} sampai dengan {{ $pemagang->magang_berakhir }}</div>
+        <form action="{{ route('pengajuan.update', $pemagang->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+            <div class="rectangle">Penempatan: <input type="text" name="penempatan" id="penempatan" value="{{ $pemagang->penempatan }}"></div>
+            <div class="rectangle1">Penugasan: <input type="text" name="penugasan" value="{{ $pemagang->penugasan }}"></div>
+            <div class="rectangle my-4">Dokumen</div>
             <div class="mb-3">
                 <label for="formFile" class="form-label"><b>Surat Balasan</b></label>
-                <input class="form-control" type="file" id="surat_balasan" placeholder="Upload Surat Pengantar"
-                 name="surat_balasan">
+                <input class="form-control" type="file" id="surat_balasan" name="surat_balasan">
+                @if($pemagang->surat_balasan)
+                    <a href="{{ Storage::url($pemagang->surat_balasan) }}" target="_blank">Lihat Surat Balasan</a>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label"><b>ID Card</b></label>
                 <input class="form-control" type="file" id="id_card" name="id_card">
+                @if($pemagang->id_card)
+                    <a href="{{ Storage::url($pemagang->id_card) }}" target="_blank">Lihat ID Card</a>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label"><b>Sertifikat</b></label>
                 <input class="form-control" type="file" id="sertifikat" name="sertifikat">
+                @if($pemagang->sertifikat)
+                    <a href="{{ Storage::url($pemagang->sertifikat) }}" target="_blank">Lihat Sertifikat</a>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label"><b>Surat Keterangan</b></label>
                 <input class="form-control" type="file" id="surat_keterangan" name="surat_keterangan">
+                @if($pemagang->surat_keterangan)
+                    <a href="{{ Storage::url($pemagang->surat_keterangan) }}" target="_blank">Lihat Surat Keterangan</a>
+                @endif
             </div>
-
-            <button onclick="alert('Dokumen Terkirim')" type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 <br>
 <br>

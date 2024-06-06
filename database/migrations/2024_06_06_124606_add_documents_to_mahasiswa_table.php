@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('mahasiswas', function (Blueprint $table) {
-            $table->string('penempatan')->nullable();
-            $table->string('penugasan')->nullable();
+            $table->string('surat_balasan')->nullable();
+            $table->string('id_card')->nullable();
+            $table->string('sertifikat')->nullable();
+            $table->string('surat_keterangan')->nullable();
         });
     }
 
@@ -23,8 +25,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('mahasiswas', function (Blueprint $table) {
-            $table->string('penempatan')->nullable();
-            $table->string('penugasan')->nullable();
+            $table->dropColumn('surat_balasan');
+            $table->dropColumn('id_card');
+            $table->dropColumn('sertifikat');
+            $table->dropColumn('surat_keterangan');
         });
     }
 };

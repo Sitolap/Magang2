@@ -170,6 +170,14 @@
                     }
                 </style>
 
+                <div class="d-flex justify-content-end">
+                    <form action="{{ route('mahasiswa.search') }}" method="GET">
+                        <input type="text" name="search" placeholder="Search...">
+                        <button type="submit" class="btn btn-primary mx-2 pt-2">Search</button>
+                    </form>
+                    <a href="{{ route('pemagang.download') }}" class="btn btn-success mx-2 pt-2">Download</a>
+                </div>
+
                 <table>
                     <thead>
                         <tr>
@@ -262,7 +270,8 @@
 
 
                 <div class="pagination-info">
-                    Menampilkan data {{ $pemagang->firstItem() }} sampai {{ $pemagang->lastItem() }} dari {{ $pemagang->total() }} jumlah total pendaftar
+                    Menampilkan data {{ $pemagang->firstItem() }} sampai {{ $pemagang->lastItem() }} dari
+                    {{ $pemagang->total() }} jumlah total pendaftar
                 </div>
                 @include('pagination.custom', ['paginator' => $pemagang])
                 <br>

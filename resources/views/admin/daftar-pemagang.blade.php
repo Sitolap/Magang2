@@ -104,7 +104,7 @@
                         <h3 style="margin-left: 90px;">Daftar Peserta Magang</h3>
                     </div>
                     <div class="text-black">
-                        <h6 style="margin-left: 90px">Menampilkan {{ $mahasiswa->count() }} dari
+                        <h6 style="margin-left: 90px">Menampilkan {{ $pemagang->count() }} dari
                             {{ \App\Models\Mahasiswa::where('status', 'diterima')->count() }}</h6>
                     </div>
 
@@ -132,9 +132,9 @@
                     </style>
 
                     <div class="d-flex justify-content-end">
-                        <form action="#" method="get">
-                            <input type="text" name="search">
-                            <input type="submit" value="Search">
+                        <form action="{{ route('search.terima') }}" method="GET">
+                            <input type="text" name="search" placeholder="Search...">
+                            <button type="submit" class="btn btn-primary mx-2 pt-2">Search</button>
                         </form>
                     </div>
                 </div>
@@ -171,17 +171,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($mahasiswa as $index => $mahasiswa)
+                        @foreach ($pemagang as $index => $pemagang)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $mahasiswa->nama }}</td>
-                                <td>{{ $mahasiswa->nama_universitas }}</td>
-                                <td>{{ $mahasiswa->penempatan }}</td>
+                                <td>{{ $pemagang->nama }}</td>
+                                <td>{{ $pemagang->nama_universitas }}</td>
+                                <td>{{ $pemagang->penempatan }}</td>
                                 <td>
-                                    <a href="{{ route('pengajuan.edit', $mahasiswa->id) }}">
-                                        <button class="btn btn-primary">Edit</button>
-                                    </a>
-                                    <a href="{{ route('detail', $mahasiswa->id) }}">
+                                    <a href="{{ route('pengajuan.edit', $pemagang->id) }}">
                                         <button class="btn btn-primary">Detail</button>
                                     </a>
                                 </td>

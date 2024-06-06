@@ -119,7 +119,7 @@
             <h1 id="kategori-magang">Kategori Magang</h1>
             <p class="fs-4">Jenjang Pendidikan:</p>
             <ul>
-                <li class="fs-5">Perguruan Tinggi pada jenjang <h4>D3/D4/S1/S2</h4>
+                <li class="fs-5">Perguruan Tinggi pada jenjang D3/D4/S1/S2
                 </li>
                 <li class="fs-5">Sekolah Menengah Kejuruan (SMK)</li>
             </ul>
@@ -159,7 +159,7 @@
         <div class="row">
             <div class="col-12 text-center text-md-center text-sm-center">
                 <a href="/kategori-magang" class="button btn btn-primary text-center my-sm-4 py-sm-3 px-sm-5"
-                    onmouseover="this.style.backgroundColor='red'"
+                    onmouseover="this.style.backgroundColor='green'"
                     onmouseout="this.style.backgroundColor='rgba(0, 81, 157, 0.9151784182)'"
                     style="background-color:rgba(0, 81, 157, 0.9151784182); ">
                     <h4>Daftar Sekarang</h4>

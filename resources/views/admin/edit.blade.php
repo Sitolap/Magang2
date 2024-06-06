@@ -11,12 +11,12 @@
 <body>
     <div class="container mt-5">
         <h2>Edit Penempatan</h2>
-        <form action="{{ route('pengajuan.update', $mahasiswa->id) }}" method="POST">
+        <form action="{{ route('pengajuan.update', $pemagang->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
                 <label for="penempatan" class="form-label">Penempatan</label>
-                <input type="text" class="form-control" id="penempatan" name="penempatan" value="{{ $mahasiswa->penempatan }}">
+                <input type="text" class="form-control" id="penempatan" name="penempatan" value="{{ $pemagang->penempatan }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

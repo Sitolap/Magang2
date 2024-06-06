@@ -130,7 +130,7 @@
                             <div class="card custom-card mx-auto btn-outline-primary">
                                 <div class="card-body text-center">
                                     <h1 class="card-title">{{ $acceptedCount }}</h1>
-                                    <h5>Peserta Magang</h5>
+                                    <h5>Pengajuan Magang Yang Diterima</h5>
                                 </div>
                             </div>
                         </div>
